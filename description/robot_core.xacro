@@ -31,7 +31,7 @@
     <joint name="chassis_joint" type="fixed">
         <parent link="base_link"/>
         <child link="chassis"/>
-        <origin xyz="0.1 0 0"/>
+        <origin xyz="-0.1 0 0"/>
     </joint>
 
     <link name="chassis">
@@ -53,13 +53,17 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <!-- LEFT WHEEL Link-->
 
     <joint name="left_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel"/>
         <origin xyz="0 0.175 0" rpy="-${pi/2} 0 0"/>
-        <axes xyz="0 0 1"/>
+        <axis xyz="0 0 1"/>
     </joint>
 
     <link name="left_wheel">
@@ -79,13 +83,17 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <!-- RIGHT WHEEL Link-->
 
     <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel"/>
         <origin xyz="0 -0.175 0" rpy="${pi/2} 0 0"/>
-        <axes xyz="0 0 -1"/>
+        <axis xyz="0 0 -1"/>
     </joint>
 
     <link name="right_wheel">
@@ -105,12 +113,17 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
     <!-- CASTER WHEEL LINK-->
 
     <joint name="caster_wheel_joint" type="fixed">
         <parent link="chassis"/>
         <child link="wheel_caster"/>
-        <origin xyz="0 0.24 0"/>
+        <origin xyz="0.24 0 0"/>
     </joint>
 
     <link name="wheel_caster">
@@ -129,4 +142,11 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_sphere>
     </link>
+
+    <gazebo reference="wheel_caster">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+    
 </robot>
